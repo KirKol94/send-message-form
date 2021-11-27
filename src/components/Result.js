@@ -7,10 +7,13 @@ export const Result = props => <div className="outlined-block result-page text-c
 	<p>Совсем скоро сообщение вылетит из сервера, и будет двигаться в сторону почты получателя «abc@my.com» со
 		скоростью электронов.</p>
 
-	<button onClick={() => {
-		props.setShowForm(true)
-		props.setShowResult(false)
-	}}>Отправить новое сообщение
+	<button
+		onClick={() => {
+			props.setShowForm(true)
+			props.setShowResult(false)
+		}}
+	>
+		Отправить новое сообщение
 	</button>
 
 </div>

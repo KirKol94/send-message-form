@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import dayjs from "dayjs";
 import {messasges} from "../selectors/formSelectors";
 import {changeStatusAC} from "../redux/message-form-reducer";
-import dayjs from "dayjs";
 
 export default function Info(props) {
 
@@ -58,7 +58,8 @@ export default function Info(props) {
 									if (selectedItemId === message.messageId && message.messageStatus === 'Ошибка') {
 										changeStatus(selectedItemId, message.messageTheme, message.messageDate)
 									}
-								}}>
+								}}
+							>
 							{message.messageStatus}
 						</span></td>
 						</tr>

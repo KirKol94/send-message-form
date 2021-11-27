@@ -9,14 +9,20 @@ export default function App() {
 	const [showForm, setShowForm] = useState(true)
 
 	return <div className="app row">
-
 		<div className="col-12">
-			{showForm && <Form setShowResult={setShowResult}
-												 setShowForm={setShowForm}/>}
-			{showResult && <Result setShowResult={setShowResult}
-														 setShowForm={setShowForm}/>}
-			<Info/>
-		</div>
 
+			{showForm && <Form
+				setShowResult={setShowResult}
+				setShowForm={setShowForm}
+			/>}
+
+			{showResult && <Result
+				setShowResult={setShowResult}
+				setShowForm={setShowForm}
+			/>}
+
+			<Info/>
+
+		</div>
 	</div>
 }

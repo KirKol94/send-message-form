@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {sendMessageAC} from "../redux/message-form-reducer";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import dayjs from "dayjs";
+import {sendMessageAC} from "../redux/message-form-reducer";
 import {InputEmailBlock} from "./InputEmailBlock";
 
 export const Form = props => {
@@ -63,42 +63,53 @@ export const Form = props => {
 	}
 
 	return (
-		<form className="form outlined-block"
-					onSubmit={onSubmit}>
+		<form
+			className="form outlined-block"
+			onSubmit={onSubmit}
+		>
 
 			<h3 className="tittle">Отправлялка сообщений</h3>
 
-			<InputEmailBlock name="От кого"
-											 showError={showFromEmailError}
-											 setShowError={setShowFromEmailError}
-											 setName={setFromName}
-											 setEmail={setFromEmail}/>
+			<InputEmailBlock
+				name="От кого"
+				showError={showFromEmailError}
+				setShowError={setShowFromEmailError}
+				setName={setFromName}
+				setEmail={setFromEmail}
+			/>
 
-			<InputEmailBlock name="Кому"
-											 showError={showToEmailError}
-											 setShowError={setShowToEmailError}
-											 setName={setToName}
-											 setEmail={setToEmail}/>
+			<InputEmailBlock
+				name="Кому"
+				showError={showToEmailError}
+				setShowError={setShowToEmailError}
+				setName={setToName}
+				setEmail={setToEmail}
+			/>
 
 			<div className="inputs row">
+
 				<span className="description">
-					Тема письма*
+					Тема письма
 				</span>
+
 				<div className="col-12">
 					<input
 						onChange={e => setMessageTheme(e.target.value)}
 						type="text"
-						placeholder="Тема"/>
+						placeholder="Тема*"
+					/>
 				</div>
+
 			</div>
 
 			<div className="inputs row">
+
 				<span className="description">Сообщение</span>
 				<div className="col-12">
-						<textarea
-							onChange={e => setMessageText(e.target.value)}
-							rows={5} placeholder="Сообщение"/>
+						<textarea onChange={e => setMessageText(e.target.value)}
+											rows={5} placeholder="Сообщение"/>
 				</div>
+
 			</div>
 
 			<button disabled={disableButton()}>

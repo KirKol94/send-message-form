@@ -1,7 +1,7 @@
 import React from "react";
 
 export const InputEmailBlock = props => {
-	function validate(email) {
+	const validate = (email) => {
 		props.setShowError(true)
 		let re = /\S+@\S+\.\S+/;
 		if (re.test(email)) {
@@ -12,7 +12,7 @@ export const InputEmailBlock = props => {
 	return (
 		<div className="inputs row">
 				<span className="description">
-					{props.name}*
+					{props.name}
 				</span>
 
 			<div className="col-sm-6 col-xl-6">
@@ -29,11 +29,14 @@ export const InputEmailBlock = props => {
 						props.setEmail(e.target.value)
 					}}
 					type="text"
-					placeholder="Email"/>
-				{props.showError &&
-				<span className="error">
+					placeholder="Email*"
+				/>
+
+				{props.showError && <span
+					className="error">
 						Некорректный email
 					</span>}
+
 			</div>
 		</div>
 	)
