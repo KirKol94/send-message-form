@@ -1,15 +1,10 @@
-import React, {useState} from "react";
-import {sendMessageAC} from "../redux/message-form-reducer";
-import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
-import dayjs from "dayjs";
+import React from "react";
 
 export const InputEmailBlock = props => {
-
-	const validator = e => {
-		let value = e.target.value
-		if (!value || !value.includes('@' && '.') || value[0] === '.' || value[0] === '@' || value[value.length - 1] === '.' || value[value.length - 1] === '@') {
-			props.setShowError(true)
-		} else {
+	function validate(email) {
+		props.setShowError(true)
+		let re = /\S+@\S+\.\S+/;
+		if (re.test(email)) {
 			props.setShowError(false)
 		}
 	}
@@ -17,12 +12,12 @@ export const InputEmailBlock = props => {
 	return (
 		<div className="inputs row">
 				<span className="description">
-					{props.name}
+					{props.name}*
 				</span>
 
 			<div className="col-sm-6 col-xl-6">
 				<input
-					onChange={e => props.setFromName(e.target.value)}
+					onChange={e => props.setName(e.target.value)}
 					type="text"
 					placeholder="Имя"/>
 			</div>
@@ -30,14 +25,14 @@ export const InputEmailBlock = props => {
 			<div className="col-sm-6 col-xl-6">
 				<input
 					onChange={e => {
-						validator(e)
-						props.setFromEmail(e.target.value)
+						validate(e.target.value)
+						props.setEmail(e.target.value)
 					}}
 					type="text"
 					placeholder="Email"/>
 				{props.showError &&
 				<span className="error">
-						Email не может быть пустым
+						Некорректный email
 					</span>}
 			</div>
 		</div>

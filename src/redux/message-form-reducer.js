@@ -1,6 +1,3 @@
-import dayjs from "dayjs";
-import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
-
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const CHANGE_STATUS = 'CHANGE_STATUS'
 

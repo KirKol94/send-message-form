@@ -9,14 +9,15 @@ export const Form = props => {
 
 	const dispatch = useDispatch()
 
-	const [fromName, setFromName] = useState('')
-	const [toName, setToName] = useState('')
+	const [fromName, setFromName] = useState(null)
 	const [fromEmail, setFromEmail] = useState(null)
+	const [toName, setToName] = useState(null)
 	const [toEmail, setToEmail] = useState(null)
-	const [messageTheme, setMessageTheme] = useState('')
-	const [messageText, setMessageText] = useState('')
+	const [messageTheme, setMessageTheme] = useState(null)
+	const [messageText, setMessageText] = useState(null)
 
-	const [showError, setShowError] = useState(false)
+	const [showFromEmailError, setShowFromEmailError] = useState(false)
+	const [showToEmailError, setShowToEmailError] = useState(false)
 
 	const randomInteger = (min, max) => {
 		let rand = min - 0.5 + Math.random() * (max - min + 1)
@@ -53,6 +54,14 @@ export const Form = props => {
 		props.setShowForm(false)
 	}
 
+	function disableButton() {
+		if ((showFromEmailError || showToEmailError) || (!fromEmail || !toEmail || !messageTheme)) {
+			return true
+		} else {
+			return false
+		}
+	}
+
 	return (
 		<form className="form outlined-block"
 					onSubmit={onSubmit}>
@@ -60,24 +69,20 @@ export const Form = props => {
 			<h3 className="tittle">Отправлялка сообщений</h3>
 
 			<InputEmailBlock name="От кого"
-											 showError={showError}
-											 setShowError={setShowError}
-											 setFromName={setFromName}
-											 setFromEmail={setFromEmail}
-											 setToName={setToName}
-											 setToEmail={setToEmail}/>
+											 showError={showFromEmailError}
+											 setShowError={setShowFromEmailError}
+											 setName={setFromName}
+											 setEmail={setFromEmail}/>
 
 			<InputEmailBlock name="Кому"
-											 showError={showError}
-											 setShowError={setShowError}
-											 setFromName={setFromName}
-											 setFromEmail={setFromEmail}
-											 setToName={setToName}
-											 setToEmail={setToEmail}/>
+											 showError={showToEmailError}
+											 setShowError={setShowToEmailError}
+											 setName={setToName}
+											 setEmail={setToEmail}/>
 
 			<div className="inputs row">
 				<span className="description">
-					Тема письма
+					Тема письма*
 				</span>
 				<div className="col-12">
 					<input
@@ -96,8 +101,7 @@ export const Form = props => {
 				</div>
 			</div>
 
-			<button
-				disabled={showError || (!fromEmail || !toEmail)}>
+			<button disabled={disableButton()}>
 				Отправить
 			</button>
 
