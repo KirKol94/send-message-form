@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {Form} from "./components/Form";
+import Info from "./components/Info";
+import Result from "./components/Result";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+
+	const [showResult, setShowResult] = useState(false)
+	const [showForm, setShowForm] = useState(true)
+
+	return <div className="app row">
+
+		<div className="col-12">
+			{showForm && <Form setShowResult={setShowResult}
+												 setShowForm={setShowForm}/>}
+			{showResult && <Result setShowResult={setShowResult}
+														 setShowForm={setShowForm}/>}
+			<Info/>
+		</div>
+
+	</div>
 }
-
-export default App;

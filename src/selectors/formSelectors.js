@@ -1,0 +1,1 @@
+export const messasges = state => state.formReducer.messages
